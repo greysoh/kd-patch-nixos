@@ -170,6 +170,7 @@ in {
 
       # Terminal
       alejandra
+      libnotify
 
       # Idek
       flameshot
@@ -207,6 +208,8 @@ in {
 
         run = "nix-shell --command zsh -p";
         nxs = "nix-shell --command zsh";
+
+        rebuild = "~/dotfiles/rebuild";
       };
     };
 
