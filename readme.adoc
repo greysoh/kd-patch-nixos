@@ -1,0 +1,16 @@
+= zero's dotfiles
+
+'''
+
+my dotfiles. they change over time, like an adapting parasite.
+
+these dotfiles use https://nixos.org[nixos].
+
+== install
+
+[,sh]
+---
+nixos-rebuild switch -I nixos-colnfig=$HOME/dotfiles/nixos/<hostname>.nix
+---
+
+use the rebuild script to edit and rebuild the configuration.
