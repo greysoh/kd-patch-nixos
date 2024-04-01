@@ -201,6 +201,7 @@ in {
 
       initExtra = ''
         export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+        export GPG_TTY=$(tty)
 
         #if [ "$TERM" != "dumb" ]; then
         #  krabby random
@@ -244,6 +245,7 @@ in {
         plugins = [
           {name = "zsh-users/zsh-autosuggestions";}
           {name = "vanesterik/zsh-git-alias";}
+          {name = "jeffreytse/zsh-vi-mode";}
         ];
       };
     };
