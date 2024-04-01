@@ -195,7 +195,7 @@ in {
     };
     programs.zsh = {
       enable = true;
-      autosuggestion.enable = true;
+      autosuggestion.enable = false;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       history.size = 10000;
@@ -252,7 +252,7 @@ in {
       zplug = {
         enable = true;
         plugins = [
-          {name = "zsh-users/zsh-autosuggestions";}
+          # { name = "zsh-users/zsh-autosuggestions"; }
           {name = "vanesterik/zsh-git-alias";}
           {name = "jeffreytse/zsh-vi-mode";}
           {name = "iridakos/goto";}
@@ -266,7 +266,7 @@ in {
 
       settings = {
         add_newline = false;
-        format = "($nix_shell)$time ($username)$directory([:{](bold black)$git_branch([](bold black)$git_status)[}](bold black))$character";
+        format = "($nix_shell)$time ($username)$directory([:{](bold black)$git_branch([](bold black)$git_status)[}](bold black)) $character";
         continuation_prompt = "\t[\\$>](bold black)";
 
         status = {
