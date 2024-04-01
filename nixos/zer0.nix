@@ -215,8 +215,6 @@ in {
 
         rebuild = "~/dotfiles/rebuild";
         gv = "lazygit";
-        gco = "git checkout";
-        gc = "git commit -m";
         grc = "gh repo clone";
 
         rm = "rm -rf";
