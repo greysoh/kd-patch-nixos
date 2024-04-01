@@ -195,6 +195,9 @@ in {
     };
     programs.zsh = {
       enable = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+      history.size = 10000;
 
       initExtra = ''
         export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -236,6 +239,14 @@ in {
         ghr = "gh repo";
         fzf = "fzf --border=rounded --prompt='\$ ' --pointer='~' --marker=' >' --bind 'ctrl-s:toggle'";
         serve = "python3 -m http.server";
+      };
+
+      zplug = {
+        enable = true;
+        plugins = [
+          {name = "zsh-users/zsh-autosuggestions";}
+          {name = "vanesterik/zsh-git-alias";}
+        ];
       };
     };
 
