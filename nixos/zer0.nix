@@ -195,6 +195,7 @@ in {
     };
     programs.zsh = {
       enable = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       history.size = 10000;
@@ -208,6 +209,14 @@ in {
         #fi
 
         eval "$(zoxide init zsh)"
+      '';
+
+      completionInit = ''
+        autoload -U compinit
+        zstyle ':completion:*' menu select
+        zmodload zsh/complist
+        compinit
+        _comp_options+=(globdots)
       '';
 
       shellAliases = {
@@ -338,6 +347,7 @@ in {
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
+  environment.pathsToLink = ["/share/zsh"];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
