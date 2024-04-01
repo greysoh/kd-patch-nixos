@@ -1,7 +1,5 @@
 = zero's dotfiles
 
-'''
-
 my dotfiles. they change over time, like an adapting parasite.
 
 these dotfiles use https://nixos.org[nixos].
