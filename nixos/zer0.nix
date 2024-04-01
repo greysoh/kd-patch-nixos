@@ -266,7 +266,7 @@ in {
         character = {
           success_symbol = "[\\$](#e8e3e3)";
           error_symbol = "[\\$](bold #424242)";
-          vimcmd_symbol = "[\\#](bold #a889af)";
+          vimcmd_symbol = "[#](bold #a889af)";
           vimcmd_replace_one_symbol = "[\\#](bold #a889af)";
           vimcmd_replace_symbol = "[\\#](bold #a889af)";
           vimcmd_visual_symbol = "[\\#](bold #a889af)";
