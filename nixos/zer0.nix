@@ -246,6 +246,8 @@ in {
           {name = "zsh-users/zsh-autosuggestions";}
           {name = "vanesterik/zsh-git-alias";}
           {name = "jeffreytse/zsh-vi-mode";}
+          {name = "iridakos/goto";}
+          {name = "olets/zsh-abbr";}
         ];
       };
     };
