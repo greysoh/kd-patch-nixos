@@ -210,6 +210,10 @@ in {
         nxs = "nix-shell --command zsh";
 
         rebuild = "~/dotfiles/rebuild";
+        gv = "lazygit";
+        gco = "git checkout";
+        gc = "git commit -m";
+        grc = "gh repo clone";
       };
     };
 
