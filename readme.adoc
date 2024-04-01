@@ -9,8 +9,8 @@ these dotfiles use https://nixos.org[nixos].
 == install
 
 [,sh]
----
-nixos-rebuild switch -I nixos-colnfig=$HOME/dotfiles/nixos/<hostname>.nix
----
+----
+nixos-rebuild switch -I nixos-config=$HOME/dotfiles/nixos/<hostname>.nix
+----
 
 use the rebuild script to edit and rebuild the configuration.
