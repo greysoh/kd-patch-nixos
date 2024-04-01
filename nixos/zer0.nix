@@ -171,6 +171,10 @@ in {
       # Terminal
       alejandra
       libnotify
+      eza
+      bat
+      bottom
+      fzf
 
       # Idek
       flameshot
@@ -203,9 +207,6 @@ in {
       '';
 
       shellAliases = {
-        ls = "ls -lah --color";
-        lsc = "ls --color";
-
         run = "nix-shell --command zsh -p";
         nxs = "nix-shell --command zsh";
 
@@ -214,6 +215,27 @@ in {
         gco = "git checkout";
         gc = "git commit -m";
         grc = "gh repo clone";
+
+        rm = "rm -rf";
+        cp = "cp -ri";
+        mkdir = "mkdir -p";
+        free = "free -m";
+        j = "just";
+
+        l = "eza -al --no-time --group-directories-first";
+        ls = "eza -al --no-time --group-directories-first";
+        la = "eza -a";
+        ll = "eza -l --no-time --group-directories-first";
+        lt = "eza -aT --no-time --group-directories-first";
+
+        cat = "bat";
+        top = "btm";
+        c = "clear";
+
+        glg = "git lg";
+        ghr = "gh repo";
+        fzf = "fzf --border=rounded --prompt='\$ ' --pointer='~' --marker=' >' --bind 'ctrl-s:toggle'";
+        serve = "python3 -m http.server";
       };
     };
 
@@ -222,7 +244,14 @@ in {
 
       settings = {
         add_newline = false;
-        format = "($nix_shell)$time ($username)$directory([:{](bold black)$git_branch([::](bold black)$git_status)[}](bold black))$character";
+        format = "
+          ($nix_shell)$
+          time
+          ($username)$
+          directory
+          ([
+            :{
+            ](bold black)$git_branch([::](bold black)$git_status)[}](bold black))$character";
         continuation_prompt = "\t[\\$>](bold black)";
 
         status = {
