@@ -7,7 +7,7 @@
     packages = with pkgs; [
       kate
       spotify
-      veskop
+      vesktop
       obsidian
       rnote
       libreoffice-qt
@@ -15,21 +15,23 @@
       google-chrome
     ];
   };
-  home.sessionPath = [
-    "$HOME/.local/bin"
-    "$HOME/bin"
-  ];
-  home.sessionVariables = {
-    SHELL = "zsh";
-    TERM = "konsole";
-    TERMINAL = "konsole";
-    EDITOR = "kate";
-  };
+
   home-manager.users.dw = {
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+    ];
+    home.sessionVariables = {
+      SHELL = "zsh";
+      TERM = "konsole";
+      TERMINAL = "konsole";
+      EDITOR = "kate";
+    };
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     imports = [
       ./programs/zsh.nix
       ./programs/starship.nix
     ];
+    home.stateVersion = "23.11";
   };
 }

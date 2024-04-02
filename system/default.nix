@@ -1,12 +1,12 @@
 { pkgs, lib, ... }:
 {
-  includes = [
-    ./system/networking.nix
-    ./system/nvidia.nix
-    ./system/xserver.nix
-    ./system/sound.nix
-    ./system/i18n.nix
-    ./system/desktop/plasma.nix
+  imports = [
+    ./networking.nix
+    ./nvidia.nix
+    ./xserver.nix
+    ./sound.nix
+    ./i18n.nix
+    ./desktop/plasma.nix
   ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

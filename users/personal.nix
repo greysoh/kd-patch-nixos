@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -44,19 +44,18 @@ in
     ];
   };
 
-  home.sessionPath = [
-    "$HOME/.local/bin"
-    "$HOME/bin"
-  ];
-  home.sessionVariables = {
-    SHELL = "zsh";
-    TERM = "konsole";
-    TERMINAL = "konsole";
-    EDITOR = "code";
-    MANPAGER = "batman";
-  };
-
   home-manager.users.kd = {
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+    ];
+    home.sessionVariables = {
+      SHELL = "zsh";
+      TERM = "konsole";
+      TERMINAL = "konsole";
+      EDITOR = "code";
+      MANPAGER = "batman";
+    };
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nixpkgs.config.allowUnfree = true;
     imports = [
@@ -67,5 +66,6 @@ in
       ./programs/zoxide.nix
       ./programs/bat.nix
     ];
+    home.stateVersion = "23.11";
   };
 }
