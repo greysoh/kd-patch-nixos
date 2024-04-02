@@ -253,6 +253,7 @@ in {
         enable = true;
         plugins = [
           # { name = "zsh-users/zsh-autosuggestions"; }
+          {name = "marlonrichert/zsh-autocomplete";}
           {name = "vanesterik/zsh-git-alias";}
           {name = "jeffreytse/zsh-vi-mode";}
           {name = "iridakos/goto";}
