@@ -52,7 +52,6 @@ in {
       "$HOME/bin"
     ];
     home.sessionVariables = {
-      SHELL = "zsh";
       TERM = "konsole";
       TERMINAL = "konsole";
       EDITOR = "code";
