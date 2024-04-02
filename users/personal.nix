@@ -11,7 +11,6 @@ in {
     ignoreShellProgramCheck = true;
     description = "zer0";
     extraGroups = ["networkmanager" "wheel"] ++ ifTheyExist ["docker" "git" "mysql" "network"];
-    shell = pkgs.zsh;
     packages = with pkgs; [
       tor-browser
       floorp

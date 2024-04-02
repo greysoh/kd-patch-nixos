@@ -8,7 +8,7 @@
     userName = "zero";
     userEmail = "rosascript@gmail.com";
     aliases = {
-      lg = "lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
+      lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
     };
     extraConfig = {
       init.defaultBranch = "main";
