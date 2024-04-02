@@ -157,11 +157,9 @@ in {
       # code
       kate
       vscode
-      git
       gh
       lazygit
       nixpkgs-fmt
-      zoxide
 
       # Notes
       rnote
@@ -221,17 +219,25 @@ in {
 
       shellAliases = {
         run = "nix-shell --command zsh -p";
-        nxs = "nix-shell --command zsh";
+        ns = "nix-shell --command zsh";
 
         rebuild = "~/dotfiles/rebuild";
         gv = "lazygit";
         grc = "gh repo clone";
+
+        src = "cd $HOME/src";
+        doc = "cd $HOME/documents";
+        dfs = "cd $HOME/dotfiles";
+
+        sv0 = "ssh -l root 192.168.0.171";
+        nmcs = "ssh -l kd 10.0.0.129";
 
         rm = "rm -rf";
         cp = "cp -ri";
         mkdir = "mkdir -p";
         free = "free -m";
         j = "just";
+        e = "code";
 
         l = "eza -al --no-time --group-directories-first";
         ls = "eza -al --no-time --group-directories-first";
@@ -240,6 +246,9 @@ in {
         lt = "eza -aT --no-time --group-directories-first";
 
         cat = "bat";
+        diff = "batdiff";
+        rg = "batgrep";
+        man = "batman";
         top = "btm";
         c = "clear";
 
@@ -259,6 +268,60 @@ in {
           {name = "iridakos/goto";}
           {name = "olets/zsh-abbr";}
         ];
+      };
+    };
+
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+
+    programs.git = {
+      enable = true;
+      userName = "zero";
+      userEmail = "rosascript@gmail.com";
+      aliases = {
+        lg = "lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
+      };
+      extraConfig = {
+        init.defaultBranch = "main";
+        url = {
+          "ssh://git@github.com" = {
+            insteadOf = "https://github.com";
+          };
+          "ssh://git@gitlab.com" = {
+            insteadOf = "https://gitlab.com";
+          };
+        };
+        user.signing.key = "20CA9B91AA1F405E";
+        commit.gpgSign = true;
+      };
+      ignores = [".direnv"];
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      options = [
+        "--cmd cd" #replace cd with z and zi (via cdi)
+      ];
+    };
+
+    programs.bat = {
+      enable = true;
+      config = {
+        style = "numbers,changes,header";
+        theme = "gruvbox-dark";
+      };
+      extraPackages = builtins.attrValues {
+        inherit
+          (pkgs.bat-extras)
+          batgrep # search through and highlight files using ripgrep
+          batdiff # Diff a file against the current git index, or display the diff between to files
+          batman
+          ; # read manpages using bat as the formatter
       };
     };
 
@@ -332,12 +395,23 @@ in {
         };
 
         nix_shell = {
-          format = "[nxs]($style) ";
+          format = "[ns]($style) ";
         };
       };
     };
 
     home.stateVersion = "23.11";
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+    ];
+    home.sessionVariables = {
+      SHELL = "zsh";
+      TERM = "konsole";
+      TERMINAL = "konsole";
+      EDITOR = "code";
+      MANPAGER = "batman";
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
