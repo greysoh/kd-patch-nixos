@@ -1,6 +1,7 @@
 { pkgs, lib, ... }: {
   users.users.dw = {
     isNormalUser = true;
+    ignoreShellProgramCheck = true;
     description = "school account";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;

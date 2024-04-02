@@ -6,6 +6,7 @@ in
 {
   users.users.kd = {
     isNormalUser = true;
+    ignoreShellProgramCheck = true;
     description = "zer0";
     extraGroups = [ "networkmanager" "wheel" ] ++ ifTheyExist [ "docker" "git" "mysql" "network" ];
     shell = pkgs.zsh;

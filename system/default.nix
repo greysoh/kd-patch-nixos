@@ -24,4 +24,5 @@
       PasswordAuthentication = true;
     };
   };
+  nixpkgs.config.allowUnfree = true;
 }
