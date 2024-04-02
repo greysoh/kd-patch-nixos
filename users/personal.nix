@@ -1,14 +1,16 @@
-{ pkgs, lib, config, ... }:
-
-let
-  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in {
   users.users.kd = {
     isNormalUser = true;
     ignoreShellProgramCheck = true;
     description = "zer0";
-    extraGroups = [ "networkmanager" "wheel" ] ++ ifTheyExist [ "docker" "git" "mysql" "network" ];
+    extraGroups = ["networkmanager" "wheel"] ++ ifTheyExist ["docker" "git" "mysql" "network"];
     shell = pkgs.zsh;
     packages = with pkgs; [
       tor-browser
@@ -57,7 +59,7 @@ in
       EDITOR = "code";
       MANPAGER = "batman";
     };
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
     nixpkgs.config.allowUnfree = true;
     imports = [
       ./programs/zsh.nix

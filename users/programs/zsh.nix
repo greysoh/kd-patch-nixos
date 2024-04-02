@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     autosuggestion.enable = false;
@@ -30,7 +33,7 @@
       run = "nix-shell --command zsh -p";
       ns = "nix-shell --command zsh";
 
-      rebuild = "~/dotfiles/rebuild";
+      rebuild = "~/nixos/rebuild";
       gv = "lazygit";
       grc = "gh repo clone";
 
@@ -71,11 +74,11 @@
       enable = true;
       plugins = [
         # { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "marlonrichert/zsh-autocomplete"; }
-        { name = "vanesterik/zsh-git-alias"; }
-        { name = "jeffreytse/zsh-vi-mode"; }
-        { name = "iridakos/goto"; }
-        { name = "olets/zsh-abbr"; }
+        {name = "marlonrichert/zsh-autocomplete";}
+        {name = "vanesterik/zsh-git-alias";}
+        {name = "jeffreytse/zsh-vi-mode";}
+        {name = "iridakos/goto";}
+        {name = "olets/zsh-abbr";}
       ];
     };
   };

@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.git = {
     enable = true;
     userName = "zero";
@@ -20,6 +23,6 @@
       user.signing.key = "20CA9B91AA1F405E";
       commit.gpgSign = true;
     };
-    ignores = [ ".direnv" ];
+    ignores = [".direnv"];
   };
 }

@@ -1,9 +1,13 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   users.users.dw = {
     isNormalUser = true;
     ignoreShellProgramCheck = true;
     description = "school account";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
     packages = with pkgs; [
       kate
@@ -28,7 +32,7 @@
       TERMINAL = "konsole";
       EDITOR = "kate";
     };
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
     imports = [
       ./programs/zsh.nix
       ./programs/starship.nix

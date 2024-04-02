@@ -1,11 +1,16 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ]; # or "nvidiaLegacy470 etc.
+  services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
 
   hardware.nvidia = {
     # Modesetting is required.

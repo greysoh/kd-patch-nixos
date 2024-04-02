@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   networking.hostName = "zer0";
   networking.extraHosts = ''
     10.0.0.129 nmcs

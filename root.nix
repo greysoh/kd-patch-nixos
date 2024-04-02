@@ -1,6 +1,9 @@
-{ pkgs, lib, inputs, ... }:
-
 {
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   imports = [
     ./system/hardware-configuration.nix # hardware scan results.
     ./system
