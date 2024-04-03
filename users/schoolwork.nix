@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   sops.secrets.dw-password.neededForUsers = true;
