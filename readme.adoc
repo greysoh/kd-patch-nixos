@@ -8,7 +8,7 @@ these dotfiles use https://nixos.org[nixos].
 
 [,sh]
 ----
-nixos-rebuild switch -I nixos-config=$HOME/dotfiles/nixos/<hostname>.nix
+git clone https://github.com/kyolinedev/nixos $HOME/nixos && nixos-rebuild switch --flake $HOME/nixos#default
 ----
 
 use the rebuild script to edit and rebuild the configuration.
