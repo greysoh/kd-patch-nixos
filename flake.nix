@@ -43,7 +43,6 @@
     nixosConfigurations.zero = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
-        hostname = "zero";
       };
       modules = [
         ./root.nix

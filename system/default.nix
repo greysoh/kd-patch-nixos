@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  hostname,
   ...
 }: {
   imports = [
@@ -13,7 +12,7 @@
     ./desktop/plasma.nix
     ./sops.nix
   ];
-  networking.hostName = hostname;
+  networking.hostName = "zero";
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
