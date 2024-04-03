@@ -12,7 +12,7 @@
     ignoreShellProgramCheck = true;
     hashedPasswordFile = config.sops.secrets.dw-password.path;
     description = "school account";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager"];
     shell = pkgs.zsh;
     packages = with pkgs; [
       kate
