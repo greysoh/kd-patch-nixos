@@ -8,6 +8,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mysecrets = {
+      url = "git+ssh://git@192.168.0.41:222/zero/sops.git?ref=main&shallow=1";
+      flake = false;
+    };
   };
 
   outputs = {

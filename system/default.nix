@@ -10,6 +10,7 @@
     ./sound.nix
     ./i18n.nix
     ./desktop/plasma.nix
+    ./sops.nix
   ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
