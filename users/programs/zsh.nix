@@ -34,6 +34,7 @@
       run = "nix-shell --command zsh -p";
       ns = "nix-shell --command zsh";
 
+      vios = "~/nixos/vios";
       rebuild = "~/nixos/rebuild";
       gv = "lazygit";
       grc = "gh repo clone";
