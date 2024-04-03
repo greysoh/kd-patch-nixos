@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  programs.git.enable = true;
   programs.zsh = {
     enable = true;
     autosuggestion.enable = false;
@@ -39,7 +40,7 @@
 
       src = "cd $HOME/src";
       doc = "cd $HOME/documents";
-      dfs = "cd $HOME/dotfiles";
+      nfs = "cd $HOME/nixos";
 
       sv0 = "ssh -l root 192.168.0.171";
       nmcs = "ssh -l kd 10.0.0.129";
