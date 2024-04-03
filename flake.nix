@@ -41,10 +41,12 @@
     devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
     nixosConfigurations.zero = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        hostname = "zero";
+      };
       modules = [
         ./root.nix
-        {hostname = "zero";}
         inputs.home-manager.nixosModules.default
       ];
     };
