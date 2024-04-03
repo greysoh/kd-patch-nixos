@@ -13,7 +13,7 @@ in {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.kd-password.path;
     ignoreShellProgramCheck = true;
-    description = "zer0";
+    description = "zero";
     extraGroups = ["networkmanager" "wheel"] ++ ifTheyExist ["docker" "git" "mysql" "network"];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [

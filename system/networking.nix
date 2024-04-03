@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  networking.hostName = "zer0";
   networking.extraHosts = ''
     10.0.0.129 nmcs
     10.0.0.12 mcs
