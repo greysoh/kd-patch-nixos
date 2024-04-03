@@ -38,4 +38,5 @@
     pinentryPackage = lib.mkForce pkgs.pinentry-qt;
   };
   nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "24.05";
 }
