@@ -8,7 +8,7 @@
 
     settings = {
       add_newline = false;
-      format = "($nix_shell)$time ($username)$directory([:{](bold black)$git_branch([](bold black)$git_status)[}](bold black)) $character";
+      format = "($nix_shell)($username)$directory([:{](bold black)$git_branch([](bold black)$git_status)[}](bold black)) $character";
       continuation_prompt = "\t[\\$>](bold black)";
 
       status = {
