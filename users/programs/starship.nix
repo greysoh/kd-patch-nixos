@@ -8,7 +8,7 @@
 
     settings = {
       add_newline = false;
-      format = "($nix_shell)($username)$directory([:{](bold black)$git_branch([](bold black)$git_status)[}](bold black)) $character";
+      format = "([\\(](bold black)$nix_shell[\\)](bold black) )($username)$directory([:{](bold black)$git_branch([](bold black)$git_status)[}](bold black)) $character";
       continuation_prompt = "\t[\\$>](bold black)";
 
       status = {
@@ -73,7 +73,7 @@
       };
 
       nix_shell = {
-        format = "[\\(nix\\)]($style) ";
+        format = "[nix]($style)";
       };
     };
   };
