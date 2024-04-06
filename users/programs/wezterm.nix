@@ -19,7 +19,7 @@
         --  'kyo',
         --  'Envy Code R',
       })
-      config.font_size = 16.0
+      config.font_size = 13.0
 
       -- tab bar settings
       config.enable_tab_bar = true
