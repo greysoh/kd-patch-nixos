@@ -13,6 +13,7 @@
 
       -- font settings
       config.font = wezterm.font_with_fallback({
+        "Miracode",
         "term",
         -- "dreamers",
         --  'kyo',
@@ -24,14 +25,14 @@
       config.enable_tab_bar = true
       config.hide_tab_bar_if_only_one_tab = true
       config.use_fancy_tab_bar = false
-      config.show_tab_index_in_tab_bar = false
+      config.show_tab_index_in_tab_bar = true
 
       -- window settings
       config.window_padding = {
-        left = "20pt",
-        right = "20pt",
-        top = "20pt",
-        bottom = "20pt",
+        left = "10pt",
+        right = "10pt",
+        top = "10pt",
+        bottom = "10pt",
       }
       config.window_background_opacity = 1.00
       config.default_cursor_style = "SteadyBar"
@@ -89,12 +90,14 @@
           active_tab = {
             bg_color = "#0c0e0f",
             fg_color = "#edeff0",
-            italic = true,
           },
-          inactive_tab = { bg_color = "#090909", fg_color = "#0c0e0f" },
-          inactive_tab_hover = { bg_color = "#151515", fg_color = "#090909" },
-          new_tab = { bg_color = "#151515", fg_color = "#090909" },
-          new_tab_hover = { bg_color = "#6791c9", fg_color = "#090909" },
+          -- inactive_tab = { bg_color = "#090909", fg_color = "#0c0e0f" },
+          -- inactive_tab_hover = { bg_color = "#151515", fg_color = "#090909" },
+          inactive_tab = { bg_color = "#090909", fg_color = "#d4d5d6" },
+          inactive_tab_hover = { bg_color = "#151515", fg_color = "#e0e2e2" },
+          new_tab = { bg_color = "#090909", fg_color = "#d4d5d6" },
+          -- new_tab_hover = { bg_color = "#6791c9", fg_color = "#090909" },
+          new_tab_hover = { bg_color = "#e0e2e2", fg_color = "#090909" },
         },
       }
 
