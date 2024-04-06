@@ -73,7 +73,7 @@
       };
 
       nix_shell = {
-        format = "[ns]($style) ";
+        format = "[\(nix\)]($style) ";
       };
     };
   };
