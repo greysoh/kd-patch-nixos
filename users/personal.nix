@@ -75,6 +75,7 @@ in {
       ./programs/zoxide.nix
       ./programs/bat.nix
       ./programs/ssh.nix
+      ./programs/wezterm.nix
     ];
     home.stateVersion = "23.11";
   };
