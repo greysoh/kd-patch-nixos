@@ -4,7 +4,6 @@ pushd ~/nixos || exit
 nix fmt &>/dev/null
 git diff -U0 '*.nix'
 echo "rebuilding nixos..."
-sudo nixos-rebuild switch --flake "$HOME/nixos#zero" | tee rebuild.log || ( grep rebuild.log --color error && exit 1)
-notify-send -e "nixos rebuilt OK!"
+sudo nixos-rebuild switch --flake "$HOME/nixos#zero" | tee rebuild.log || ( grep rebuild.log --color error && exit 1) && notify-send -e "rebuild finished!"
 
 popd || echo "failed to popd"

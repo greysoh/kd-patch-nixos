@@ -18,6 +18,13 @@
       url = "git+ssh://git@192.168.0.41:222/zero/sops.git?ref=main&shallow=1";
       flake = false;
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = {

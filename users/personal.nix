@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -54,29 +55,33 @@ in {
     ];
   };
 
-  home-manager.users.kd = {
-    home.sessionPath = [
-      "$HOME/.local/bin"
-      "$HOME/bin"
-    ];
-    home.sessionVariables = {
-      TERM = "konsole";
-      TERMINAL = "konsole";
-      EDITOR = "code";
-      MANPAGER = "batman";
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users.kd = {
+      home.sessionPath = [
+        "$HOME/.local/bin"
+        "$HOME/bin"
+      ];
+      home.sessionVariables = {
+        TERM = "konsole";
+        TERMINAL = "konsole";
+        EDITOR = "code";
+        MANPAGER = "batman";
+      };
+      nix.settings.experimental-features = ["nix-command" "flakes"];
+      nixpkgs.config.allowUnfree = true;
+      imports = [
+        ./programs/zsh.nix
+        ./programs/starship.nix
+        ./programs/direnv.nix
+        ./programs/git.nix
+        ./programs/zoxide.nix
+        ./programs/bat.nix
+        ./programs/ssh.nix
+        ./programs/wezterm.nix
+        ./programs/hyprland.nix
+      ];
+      home.stateVersion = "23.11";
     };
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-    nixpkgs.config.allowUnfree = true;
-    imports = [
-      ./programs/zsh.nix
-      ./programs/starship.nix
-      ./programs/direnv.nix
-      ./programs/git.nix
-      ./programs/zoxide.nix
-      ./programs/bat.nix
-      ./programs/ssh.nix
-      ./programs/wezterm.nix
-    ];
-    home.stateVersion = "23.11";
   };
 }
