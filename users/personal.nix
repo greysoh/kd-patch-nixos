@@ -80,6 +80,7 @@ in {
         ./programs/ssh.nix
         ./programs/wezterm.nix
         ./programs/hyprland.nix
+        ./programs/gh.nix
       ];
       home.stateVersion = "23.11";
     };
