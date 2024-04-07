@@ -35,7 +35,7 @@
       ns = "nix-shell --command zsh";
 
       vios = "~/nixos/vios";
-      rebuild = "~/nixos/rebuild";
+      switch = "~/nixos/switch";
       gv = "lazygit";
       grc = "gh repo clone";
 
@@ -43,8 +43,8 @@
       doc = "cd $HOME/documents";
       nfs = "cd $HOME/nixos";
 
-      sv0 = "ssh -l root 192.168.0.171";
-      nmcs = "ssh -l kd 10.0.0.129";
+      sv0 = "ssh -l root 192.168.1.171";
+      nmcs = "ssh -l kd 192.168.0.161";
 
       rm = "rm -rf";
       cp = "cp -ri";

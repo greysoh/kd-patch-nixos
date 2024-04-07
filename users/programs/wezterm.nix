@@ -21,6 +21,8 @@
       })
       config.font_size = 13.0
 
+      config.enable_wayland = true
+
       -- tab bar settings
       config.enable_tab_bar = true
       config.hide_tab_bar_if_only_one_tab = true
