@@ -37,6 +37,10 @@
     enableSSHSupport = true;
     pinentryPackage = lib.mkForce pkgs.pinentry-qt;
   };
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
 }
