@@ -81,5 +81,31 @@
     #media-session.enable = true;
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  environment.sessionVariables = {
+    # if ur cursor becomes invisble
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # tell electron to use wayland
+    NIXOS_OZONE_WL = "1";
+  };
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+  ];
+  fonts.packages = with pkgs; [
+    liberation_ttf
+    google-fonts
+    nerdfonts
+  ];
+
   system.stateVersion = "24.05";
 }

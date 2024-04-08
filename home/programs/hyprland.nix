@@ -33,7 +33,10 @@ in {
         focus_on_activate = false;
         new_window_takes_over_fullscreen = 2;
       };
-      exec-once = [''${startupScript}/bin/start''];
+      exec-once = [
+        ''${startupScript}/bin/start''
+        ''dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP''
+      ];
       general = {
         layout = "master";
         gaps_in = 5;

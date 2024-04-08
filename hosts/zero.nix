@@ -43,12 +43,6 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # -- NVIDIA --
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
 
   hardware.nvidia = {
@@ -91,24 +85,4 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables = {
-    # if ur cursor becomes invisble
-    WLR_NO_HARDWARE_CURSORS = "1";
-    # tell electron to use wayland
-    NIXOS_OZONE_WL = "1";
-  };
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-wlr
-  ];
-  fonts.packages = with pkgs; [
-    liberation_ttf
-    google-fonts
-    nerdfonts
-  ];
 }

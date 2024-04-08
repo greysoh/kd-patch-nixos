@@ -6,44 +6,26 @@
   programs.git.enable = true;
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = false;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
 
     initExtra = ''
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       export GPG_TTY=$(tty)
-
-      #if [ "$TERM" != "dumb" ]; then
-      #  krabby random
-      #fi
-
       eval "$(zoxide init zsh)"
-    '';
-
-    completionInit = ''
-      autoload -U compinit
-      zstyle ':completion:*' menu select
-      zmodload zsh/complist
-      compinit
-      _comp_options+=(globdots)
     '';
 
     shellAliases = {
       run = "nix-shell --command zsh -p";
       ns = "nix-shell --command zsh";
+      nd = "nix develop --command zsh";
 
-      vios = "~/nixos/vios";
       switch = "~/nixos/switch";
       gv = "lazygit";
-      grc = "gh repo clone";
 
       src = "cd $HOME/src";
-      doc = "cd $HOME/documents";
       nfs = "cd $HOME/nixos";
 
-      sv0 = "ssh -l root 192.168.1.171";
-      nmcs = "ssh -l kd 192.168.0.161";
+      sv0 = "ssh -l root proxmox";
+      nmcs = "ssh -l kd nmcs";
 
       rm = "rm -rf";
       cp = "cp -ri";
@@ -81,12 +63,7 @@
     zplug = {
       enable = true;
       plugins = [
-        # { name = "zsh-users/zsh-autosuggestions"; }
-        {name = "marlonrichert/zsh-autocomplete";}
         {name = "vanesterik/zsh-git-alias";}
-        {name = "jeffreytse/zsh-vi-mode";}
-        {name = "iridakos/goto";}
-        {name = "olets/zsh-abbr";}
       ];
     };
   };

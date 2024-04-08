@@ -21,7 +21,6 @@ in {
       (builtins.readFile ./id_zero.pub)
     ];
     packages = with pkgs; [
-      tor-browser
       floorp
       vesktop
       spotify
@@ -31,15 +30,12 @@ in {
       vscode
       gh
       lazygit
-      nixpkgs-fmt
 
       # Notes
       rnote
-      obsidian
       libreoffice-qt
 
       # Terminal
-      alejandra
       libnotify
       eza
       bat
@@ -48,10 +44,6 @@ in {
 
       # Idek
       vlc
-
-      thunderbird
-      adoptopenjdk-icedtea-web
-      openjfx17
     ];
   };
 }

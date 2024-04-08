@@ -18,7 +18,6 @@
       google-chrome
       spotify
 
-      obsidian
       vesktop
       rnote
       libreoffice-qt
