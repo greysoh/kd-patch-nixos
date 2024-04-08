@@ -8,7 +8,7 @@ these dotfiles use https://nixos.org[nixos].
 
 [,sh]
 ----
-git clone https://github.com/kyolinedev/nixos $HOME/nixos && nixos-rebuild switch --flake $HOME/nixos#default
+git clone https://github.com/kyolinedev/nixos $HOME/nixos && $HOME/nixos/switch os <hostname> && $HOME/nixos/switch home <username>
 ----
 
 use the rebuild script to edit and rebuild the configuration.
