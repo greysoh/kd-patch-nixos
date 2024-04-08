@@ -1,9 +1,35 @@
 #!/usr/bin/env bash
-pushd ~/nixos || exit
+# usage: ~/nixos/switch <home | os> <user | system>
 
-nix fmt &>/dev/null
+set -e
+pushd ~/nixos || exit
+if git diff --quiet '*.nix'; then
+   echo "No changes detected, exiting."
+   popd
+   exit 0
+fi
+
+if [ -z "$1" ] || [ -z "$2" ]; then 
+   echo "usage: switch <home | os> <user | system>"
+   popd
+   exit 0
+fi
+
+# autoformat
+nix fmt &>/dev/null \
+   || (nix fmt ; echo "formatting failed!" && exit 1)
+
+# shows changes
 git diff -U0 '*.nix'
-echo "rebuilding nixos..."
-sudo nixos-rebuild switch --flake "$HOME/nixos#zero" | tee rebuild.log || ( grep rebuild.log --color error && exit 1) && notify-send -e "rebuild finished!"
+
+if [ "$1" = "home" ]; then
+   echo "rebuilding home-manager for user $2..."
+   home-manager switch --flake "$HOME/nixos#$2" | tee switch.log || ( grep rebuild.log --color error && exit 1)
+   notify-send -e "home manager rebuilt!"
+elif [ "$1" = "os" ]; then
+   echo "rebuilding nixos for host $2..."
+   sudo nixos-rebuild switch --flake "$HOME/nixos#$2" | tee switch.log || ( grep rebuild.log --color error && exit 1)
+   notify-send -e "nixos rebuilt!"
+fi
 
 popd || echo "failed to popd"

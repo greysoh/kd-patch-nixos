@@ -9,7 +9,6 @@
     autosuggestion.enable = false;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    history.size = 10000;
 
     initExtra = ''
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -65,13 +64,20 @@
       man = "batman";
       top = "btm";
       c = "clear";
-
+      mkscript = "${pkgs.writeShellScriptBin "mkscript" ''
+        touch "$@"
+        chmod +x "$@"
+      ''}/bin/mkscript";
       glg = "git lg";
       ghr = "gh repo";
       fzf = "fzf --border=rounded --prompt='\$ ' --pointer='~' --marker=' >' --bind 'ctrl-s:toggle'";
       serve = "python3 -m http.server";
     };
-
+    history = {
+      expireDuplicatesFirst = true;
+      save = 100000000;
+      size = 1000000000;
+    };
     zplug = {
       enable = true;
       plugins = [

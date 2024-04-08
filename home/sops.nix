@@ -1,4 +1,3 @@
-# home level sops.
 {inputs, ...}: let
   secretspath = builtins.toString inputs.mysecrets;
 in {

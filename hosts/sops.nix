@@ -1,7 +1,7 @@
-# system level sops.
 {
+  pkgs,
+  lib,
   inputs,
-  config,
   ...
 }: let
   secretspath = builtins.toString inputs.mysecrets;

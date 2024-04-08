@@ -15,32 +15,16 @@
     extraGroups = ["networkmanager"];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      kate
+      google-chrome
       spotify
-      vesktop
+
       obsidian
+      vesktop
       rnote
       libreoffice-qt
-      vlc
-      google-chrome
-    ];
-  };
 
-  home-manager.users.dw = {
-    home.sessionPath = [
-      "$HOME/.local/bin"
-      "$HOME/bin"
+      kate
+      vlc
     ];
-    home.sessionVariables = {
-      TERM = "konsole";
-      TERMINAL = "konsole";
-      EDITOR = "kate";
-    };
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-    imports = [
-      ./programs/zsh.nix
-      ./programs/starship.nix
-    ];
-    home.stateVersion = "23.11";
   };
 }
