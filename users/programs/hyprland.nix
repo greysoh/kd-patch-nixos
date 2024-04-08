@@ -23,7 +23,17 @@ in {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     settings = {
-      exec-once = ''${startupScript}/bin/start'';
+      misc = {
+        vfr = true;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        force_default_wallpaper = 0;
+        disable_autoreload = true;
+        background_color = "rgb(000000)";
+        focus_on_activate = false;
+        new_window_takes_over_fullscreen = 2;
+      };
+      exec-once = [''${startupScript}/bin/start''];
       general = {
         layout = "master";
         gaps_in = 5;
@@ -31,30 +41,57 @@ in {
       };
       xwayland.force_zero_scaling = true;
       debug.watchdog_timeout = 0;
+      input = {
+        sensitivity = 0;
+        force_no_accel = 1;
+      };
       "$mainMod" = "SUPER";
       decoration = {
         rounding = "12";
         blur.enabled = false;
-        drop_shadow = true;
+        drop_shadow = false;
         shadow_range = 16;
         shadow_render_power = 3;
         shadow_offset = "2 2";
         "col.shadow" = "rgba(0C0E13A0)";
         dim_special = "0.35";
       };
+      animations = {
+        enabled = true;
+        first_launch_animation = false;
+
+        bezier = "overshot,0.5,0.1,0.4,1.2";
+        animation = [
+          "global, 1, 3, default"
+          "workspaces, 1, 4, default"
+          "windowsMove, 1, 2, default"
+          "fade, 1, 2, default"
+        ];
+      };
+      layerrule = [
+        "animation slide, notifications"
+      ];
+      windowrule = [
+        "float,^(kitty)$"
+      ];
 
       bind = [
         ''CTRL ALT, Return, exec, ${pkgs.kitty}/bin/kitty''
-        ''$mainMod, D, exec, ${pkgs.wofi}/bin/wofi -show drun -show-icons''
+        ''$mainMod, D, exec, ${pkgs.wofi}/bin/wofi --show drun --show-icons''
         ''$mainMod, Tab, focusmonitor, +1''
-        ''$mainMod CTRL, P, exec, ${waybarRestart}/bin/restart''
-        ''$mainMod CTRL, R, exec, hyprctl reload''
+        ''$mainMod ALT, P, exec, ${waybarRestart}/bin/restart''
+        ''$mainMod ALT, R, exec, hyprctl reload''
+        ''$mainMod ALT, X, exec, pkill Hyprland''
+        #zoom??
+        ''SUPER, Z, exec, hyprctl keyword misc:cursor_zoom_factor 4''
+        ''SUPER SHIFT, Z, exec, hyprctl keyword misc:cursor_zoom_factor 1''
         ''$mainMod SHIFT, Tab, focusmonitor, -1''
         ''CTRL ALT SHIFT, S, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png')''
         ''CTRL ALT, S, exec, ${pkgs.grim}/bin/grim -l 0 -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy''
         '', XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_SINK@ 5%-''
         '', XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_SINK@ 5%+''
         '', XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle''
+        '', XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle''
         # workspaces
         ''$mainMod, 1, workspace, 1''
         ''$mainMod, 2, workspace, 2''
@@ -76,6 +113,19 @@ in {
         ''$mainMod SHIFT, 8, movetoworkspace, 8''
         ''$mainMod SHIFT, 9, movetoworkspace, 9''
         ''$mainMod SHIFT, 0, movetoworkspace, 10''
+        ''$mainMod, K, movefocus, u''
+        ''$mainMod, H, movefocus, l''
+        ''$mainMod, J, movefocus, d''
+        ''$mainMod, L, movefocus, r''
+        ''SUPER, F, fullscreen,''
+        ''SUPER SHIFT, F, fullscreen, 2'' # just change window size
+        ''SUPER ALT, F, fakefullscreen,'' # Just change fullscreen state
+        ''SUPER, G, togglefloating,''
+        ''SUPER, P, pseudo,''
+        ''SUPER SHIFT, P, pin,''
+        ''SUPER, T, togglesplit,''
+        ''SUPER, U, focusurgentorlast,''
+        ''SUPER, Q, killactive,''
       ];
       bindm = [
         ''$mainMod, mouse:272, movewindow''
