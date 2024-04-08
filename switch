@@ -3,11 +3,6 @@
 
 set -e
 pushd ~/nixos || exit
-if git diff --quiet '*.nix'; then
-   echo "No changes detected, exiting."
-   popd
-   exit 0
-fi
 
 if [ -z "$1" ] || [ -z "$2" ]; then 
    echo "usage: switch <home | os> <user | system>"
