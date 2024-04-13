@@ -56,6 +56,28 @@
     192.168.1.40 pihole
   '';
 
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-tour
+    ])
+    ++ (with pkgs.gnome; [
+      cheese # webcam tool
+      gnome-music
+      gnome-terminal
+      epiphany # web browser
+      geary # email reader
+      evince # document viewer
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ]);
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -68,6 +90,11 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.pam.services.sddm.enableKwallet = true;
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -80,6 +107,8 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  services.tailscale.enable = true;
 
   hardware.opengl = {
     enable = true;
@@ -99,7 +128,8 @@
   };
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-wlr
+    pkgs.xdg-desktop-portal-hyprland
   ];
   fonts.packages = with pkgs; [
     liberation_ttf

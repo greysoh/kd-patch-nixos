@@ -24,6 +24,9 @@ in {
       floorp
       vesktop
       spotify
+      graphite-cursors
+      gnome3.gnome-tweaks
+      gnomeExtensions.unite
 
       # code
       kate

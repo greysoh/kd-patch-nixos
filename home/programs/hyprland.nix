@@ -5,24 +5,39 @@
   ...
 }: let
   startupScript = pkgs.writeShellScriptBin "start" ''
+    ${pkgs.kwallet-pam}/libexec/pam_kwallet_init
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.mako}/bin/mako &
     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
     ${pkgs.swww}/bin/swww-daemon &
-    sleep 1
     ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
   '';
   waybarRestart = pkgs.writeShellScriptBin "restart" ''
     ${pkgs.procps}/bin/pkill -9 -f waybar
     ${pkgs.waybar}/bin/waybar &
   '';
+  restartxdgportals = pkgs.writeShellScriptBin "restart" ''
+    sleep 4
+    ${pkgs.killall}/bin/killall -e xdg-desktop-portal-hyprland
+    ${pkgs.killall}/bin/killall xdg-desktop-portal
+    ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland &
+    sleep 1
+    ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
+  '';
 in {
+  imports = [
+    ./waybar.nix
+  ];
   wayland.windowManager.hyprland = {
     # allow home-manager to configure hyprland
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     settings = {
+      monitor = [
+        "eDP-1,2560x1440@240,0x0,1.6"
+        "HDMI-A-1,2560x1440@144,1600x0,1"
+      ];
       misc = {
         vfr = true;
         disable_hyprland_logo = true;
@@ -35,7 +50,9 @@ in {
       };
       exec-once = [
         ''${startupScript}/bin/start''
-        ''dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP''
+        ''${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1''
+        ''dbus-update-activation-environment --systemd wayland-1 Hyprland''
+        ''${restartxdgportals}/bin/restart''
       ];
       general = {
         layout = "master";
@@ -46,6 +63,8 @@ in {
       debug.watchdog_timeout = 0;
       input = {
         sensitivity = 0;
+        follow_mouse = 0;
+        float_switch_override_focus = 0;
         force_no_accel = 1;
       };
       "$mainMod" = "SUPER";
@@ -76,6 +95,12 @@ in {
       ];
       windowrule = [
         "float,^(kitty)$"
+        "float,title:^(Open Folder)$"
+        "size 35% 35%,title:^(Open Folder)$"
+        "center,title:^(Open Folder)$"
+        "workspace 4,^(vesktop)$"
+        "workspace 3,^(code-url-handler)$"
+        "workspace 1,^(floorp)$"
       ];
 
       bind = [
@@ -129,6 +154,7 @@ in {
         ''SUPER, T, togglesplit,''
         ''SUPER, U, focusurgentorlast,''
         ''SUPER, Q, killactive,''
+        ''$mainMod CTRL, C, exec, ${pkgs.wl-clipboard}/bin/wl-copy -cp''
       ];
       bindm = [
         ''$mainMod, mouse:272, movewindow''

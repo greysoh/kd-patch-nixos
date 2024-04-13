@@ -19,11 +19,11 @@ git diff -U0 '*.nix'
 
 if [ "$1" = "home" ]; then
    echo "rebuilding home-manager for user $2..."
-   home-manager switch --flake "$HOME/nixos#$2" | tee switch.log || ( grep rebuild.log --color error && exit 1)
+   home-manager switch --flake "$HOME/nixos#$2" | tee switch.log || ( grep switch.log --color error && exit 1)
    notify-send -e "home manager rebuilt!"
 elif [ "$1" = "os" ]; then
    echo "rebuilding nixos for host $2..."
-   sudo nixos-rebuild switch --flake "$HOME/nixos#$2" | tee switch.log || ( grep rebuild.log --color error && exit 1)
+   sudo nixos-rebuild switch --flake "$HOME/nixos#$2" | tee switch.log || ( grep switch.log --color error && exit 1)
    notify-send -e "nixos rebuilt!"
 fi
 
