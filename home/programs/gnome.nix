@@ -54,6 +54,22 @@
         color-scheme = "prefer-dark";
       };
 
+      "org/gnome/desktop/wm/preferences" = {
+        resize-with-right-button = true;
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        binding = "<Super>Return";
+        command = "kitty";
+        name = "Open Terminal";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
       "org/gnome/desktop/background" = {
         picture-uri = "file:///${./wallpaper.jpg}";
         picture-uri-dark = "file:///${./wallpaper.jpg}";
