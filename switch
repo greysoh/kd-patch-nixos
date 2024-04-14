@@ -19,7 +19,9 @@ git diff -U0 '*.nix'
 
 if [ "$1" = "home" ]; then
    echo "rebuilding home-manager for user $2..."
-   rm -rf ~/.config/gtk-4.0/gtk.css # Hack! This should be backing up, but it isn't?
+   # Hacks! This should be backing up, but it isn't?
+   rm -rf ~/.config/gtk-3.0/*
+   rm -rf ~/.config/gtk-4.0/* 
    home-manager switch --flake "$HOME/nixos#$2" -b backup | tee switch.log || ( grep switch.log --color error && exit 1)
    notify-send -e "home manager rebuilt!"
 elif [ "$1" = "os" ]; then
