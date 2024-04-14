@@ -17,7 +17,7 @@
     };
 
     cursorTheme = {
-      name = "Graphite-dark-cursors";
+      name = "Graphite-dark";
       package = pkgs.graphite-cursors;
     };
   };
